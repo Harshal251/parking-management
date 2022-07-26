@@ -9,13 +9,13 @@ module Printer
 end
 
 module Parking
-    include Printer
-    def initialize
+  include Printer
+  def initialize
 
         $cars = Hash.new
         
         @AVAILABLE = 3
-        @parked = 0 
+        @parked = 1 
         startCarParking
     end
     def startCarParking
@@ -28,20 +28,27 @@ module Parking
                
             response = gets.chomp.to_s.upcase()
             pLines
-            @slot-=1
+            
 
             if response == "Y"
-                @parked += 1
+                
                 puts "Assgined parking no. #{@parked}/#{@AVAILABLE}\nEnter the details below...".upcase()
                 print "Enter your car no.:".upcase()
                 car_no = gets.chomp.to_s
-             pLines
-               $cars[@parked]=car_no   
+                pLines
+                if $cars.has_value?(car_no)
+                puts "ALREADY IN THE LIST"
+                else
+                  
+                  $cars[@parked]=car_no  
+                  @slot-=1 
+                  @parked += 1
+                end            
             else
                 puts "Exiting".upcase()
                 break
             end
-            if @parked == @AVAILABLE
+            if @parked-1 == @AVAILABLE
                 puts"PLEASE WAIT WHILE WE CHECK THE SLOTS AVAIBILTY!!"
                 sleep(0.5)
                 pLines
@@ -58,7 +65,7 @@ module Parking
              def removing_car
                     puts "PLEASE GIVE YOUR PARKING NUMBER: "
                     v= gets.chomp.to_i
-                    if v<=@AVAILABLE
+                    if  @parked!=0 && $cars.has_key?(v)
                     pLines
                     puts "SUCCESS !! REMOVED CAR AT #{v} SLOT"
                     puts ("CAR NO:"+$cars.delete(v))
