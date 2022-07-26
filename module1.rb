@@ -2,7 +2,7 @@ module Printer
     def pLines
         for i in 0..61
             print "="
-            sleep(0.01)  
+            sleep(0.008)  
         end
         print "\n"
     end
@@ -34,7 +34,8 @@ module Parking
                 car_no = gets.chomp.to_s
                 pLines
                 if $cars.has_value?(car_no)
-                puts "ALREADY IN THE LIST"
+                puts "SORRY THE CAR IS ALREADY PARKED!!"
+                pLines
                 else
                   
                   $cars[@parked]=car_no  
@@ -49,7 +50,7 @@ module Parking
                 puts"PLEASE WAIT WHILE WE CHECK THE SLOTS AVAIBILTY!!"
                 sleep(0.5)
                 pLines
-                puts "SORRY CAR PARING IS FULL !!"
+                puts "SORRY CAR PARkING IS FULL !!"
                 pLines   
             end
 
