@@ -1,4 +1,15 @@
+module Printer
+    def pLines
+        for i in 0..61
+            print "="
+            sleep(0.01)  
+        end
+        print "\n"
+    end
+end
+
 module Parking
+    include Printer
     def initialize
 
         $cars = Hash.new
@@ -12,56 +23,56 @@ module Parking
         @slot=3
         while $cars.size <@AVAILABLE
 
-            print "Total #{@slot} Parking space is available right now!\nDo you want to park car [y/n]: \n"
-            puts "===================================================================="
-            response = gets.chomp.to_s
+            print "Total #{@slot} Parking space is available right now!\nDo you want to park car [y/n]: \n".upcase()
+            pLines
+               
+            response = gets.chomp.to_s.upcase()
+            pLines
             @slot-=1
 
-            if response == "y"
+            if response == "Y"
                 @parked += 1
-                puts "Assgined parking no. #{@parked}/#{@AVAILABLE}\nEnter the details below..."
-                print "Enter your car no.:"
+                puts "Assgined parking no. #{@parked}/#{@AVAILABLE}\nEnter the details below...".upcase()
+                print "Enter your car no.:".upcase()
                 car_no = gets.chomp.to_s
-                puts "===================================================================="
-                $cars[@parked]=car_no
-          
-              
+             pLines
+               $cars[@parked]=car_no   
             else
-                puts "Exiting"
+                puts "Exiting".upcase()
                 break
             end
-            # sleep(1)
             if @parked == @AVAILABLE
-                puts "===================================================================="
                 puts"PLEASE WAIT WHILE WE CHECK THE SLOTS AVAIBILTY!!"
-                sleep(3)
-                puts "===================================================================="
+                sleep(0.8)
+                pLines
                 puts "SORRY CAR PARING IS FULL !!"
-                puts "===================================================================="
+                pLines   
             end
 
         end
-        # sleep(2)
         puts "DO YOU WANT TO REMOVE YOUR CAR:[Y/N]"
-        puts "===================================================================="
+        pLines
         res = gets.chomp.upcase()
+        pLines
         if res =="Y"
              def removing_car
                     puts "PLEASE GIVE YOUR PARKING NUMBER: "
                     v= gets.chomp.to_i
-                    puts "===================================================================="
+                    if v<=@AVAILABLE
+                    pLines
                     puts "SUCCESS !! REMOVED CAR AT #{v} SLOT"
                     puts ("CAR NO:"+$cars.delete(v))
-                    puts "===================================================================="
+                    else
+                        puts "ENTER VALID SLOT NUMBER!!"
+                        end
+                    pLines
             #@AVAILABLE +=1
             puts "SLOTS AVAILABLE FOR PARKING ARE:#{@AVAILABLE -$cars.length}"
-            puts "===================================================================="
+           pLines
         end
         else
             puts "THANK YOU FOR USING!!"
     end 
-        if $cars.size >@AVAILABLE
-            puts "Sorry the parking is not available #{@parked}/#{@AVAILABLE}"
-        end
+       
     end  
 end
