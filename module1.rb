@@ -62,10 +62,10 @@ module Parking
         if res =="Y"
              def removing_car
                     puts "PLEASE GIVE YOUR PARKING NUMBER: "
-                    v= gets.chomp.to_i
+                    v= gets.chomp.to_i 
                     if  @parked!=0 && $cars.has_key?(v)
                     pLines
-                    puts "SUCCESS !! REMOVED CAR AT #{v} SLOT"
+                    puts "SUCCESS !! REMOVED CAR AT SLOT #{v}"
                     puts ("CAR NO:"+$cars.delete(v))
                     else
                         puts "ENTER VALID SLOT NUMBER!!"
