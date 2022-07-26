@@ -13,14 +13,14 @@ module Parking
   def initialize
 
         $cars = Hash.new
-        
-        @AVAILABLE = 3
+        puts "ENTER NUMBER OF SLOTS YOU WANT!! "
+        @AVAILABLE = gets.chomp.to_i
         @parked = 1 
         startCarParking
     end
     def startCarParking
     
-        @slot=3
+        @slot=@AVAILABLE
         while $cars.size <@AVAILABLE
 
             print "Total #{@slot} Parking space is available right now!\nDo you want to park car [y/n]: \n".upcase()
@@ -28,10 +28,7 @@ module Parking
                
             response = gets.chomp.to_s.upcase()
             pLines
-            
-
-            if response == "Y"
-                
+            if response == "Y" 
                 puts "Assgined parking no. #{@parked}/#{@AVAILABLE}\nEnter the details below...".upcase()
                 print "Enter your car no.:".upcase()
                 car_no = gets.chomp.to_s
