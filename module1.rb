@@ -43,7 +43,7 @@ module Parking
             end
             if @parked == @AVAILABLE
                 puts"PLEASE WAIT WHILE WE CHECK THE SLOTS AVAIBILTY!!"
-                sleep(0.8)
+                sleep(0.5)
                 pLines
                 puts "SORRY CAR PARING IS FULL !!"
                 pLines   
